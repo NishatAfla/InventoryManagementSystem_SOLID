@@ -10,5 +10,7 @@ namespace DAL.Interface
     public interface IItemFeatures
     {
         List<Item> SearchByName(string name);
+        List<Item> SearchByCategory(string category);
     }
+
 }

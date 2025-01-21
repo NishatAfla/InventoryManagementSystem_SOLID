@@ -75,13 +75,25 @@ namespace InventoryManagementSystem.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, responseMessage);
         }
+      
+
+        [HttpGet]
+        [Route("api/item/category/{category}")]
+        public HttpResponseMessage SearchByCategory(string category)
+        {
+            var data = ItemService.SearchByCategory(category);
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
+
+
         [HttpGet]
         [Route("api/item/search/{name}")]
-        public HttpResponseMessage Search(string name)
+        public HttpResponseMessage SearchByName(string name)
         {
             var data = ItemService.SearchByName(name);
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
+
 
     }
 }

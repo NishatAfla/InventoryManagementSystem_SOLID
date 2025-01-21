@@ -38,6 +38,11 @@ namespace DAL.Repos
         {
             return db.Item.Where(x => x.Name.Contains(name)).ToList();
         }
+        public List<Item> SearchByCategory(string category)
+        {
+            return db.Item.Where(x => x.Category.Contains(category)).ToList();
+        }
+
 
         public Item Update(Item obj)
         {
@@ -46,5 +51,7 @@ namespace DAL.Repos
             db.SaveChanges();
             return ex;
         }
+      
+
     }
 }

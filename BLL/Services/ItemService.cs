@@ -53,15 +53,18 @@ namespace BLL.Services
             return repo.Delete(id);
         }
 
-          public static List<ItemDTO> SearchByName(string name)
-           {
-              var repo = DataAccess.ItemData();
-               var data = repo.Get();
-               var filter = data.Where(x => x.Name.Contains(name)).ToList();
-            return GetMapper().Map<List<ItemDTO>>(data);
+        public static List<ItemDTO> SearchByName(string name)
+        {
+            var repo = DataAccess.ItemFeatures(); // Use the correct interface to access SearchByName
+            var data = repo.SearchByName(name);  // Get filtered data directly from the repo
+            return GetMapper().Map<List<ItemDTO>>(data); // Map the filtered data to DTOs
+        }
 
-
-
+        public static List<ItemDTO> SearchByCategory(string category)
+        {
+            var repo = DataAccess.ItemFeatures(); // Use the correct interface to access SearchByCategory
+            var data = repo.SearchByCategory(category); // Get filtered data directly from the repo
+            return GetMapper().Map<List<ItemDTO>>(data); // Map the filtered data to DTOs
         }
 
         public static ItemDTO Update(ItemDTO updatedItemDTO)
@@ -77,5 +80,7 @@ namespace BLL.Services
             // Map Entity back to DTO for response
             return GetMapper().Map<ItemDTO>(updatedEntity);
         }
+        
+
     }
 }

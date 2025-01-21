@@ -13,6 +13,7 @@ namespace DAL.Interface
         bool Delete(ID id);
         CLASS Get(ID id);
         List<CLASS> Get();
+        
 
     }
 }

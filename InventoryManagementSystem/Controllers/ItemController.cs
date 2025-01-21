@@ -93,6 +93,20 @@ namespace InventoryManagementSystem.Controllers
             var data = ItemService.SearchByName(name);
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
+        [HttpGet]
+        [Route("api/item/details/{id}")]
+        public HttpResponseMessage GetDetails(int id)
+        {
+            try
+            {
+                var data = ItemService.GetDetails(id);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex.Message);
+            }
+        }
 
 
     }

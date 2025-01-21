@@ -80,7 +80,27 @@ namespace BLL.Services
             // Map Entity back to DTO for response
             return GetMapper().Map<ItemDTO>(updatedEntity);
         }
-        
+        public static ItemDTO GetDetails(int id)
+        {
+            var repo = DataAccess.ItemData(); // Access the repository
+            var item = repo.Get(id); // Fetch the item by ID
+            if (item == null)
+            {
+                throw new Exception("Item not found"); // Handle item not found
+            }
+            // Map the item to an ItemDTO and return only relevant fields
+            return new ItemDTO
+            {
+                ItemId = item.ItemId,
+                Name = item.Name,
+                SellingPrice = item.SellingPrice,
+                Description = item.Description,
+                Quantity = item.Quantity,
+                Category = item.Category,
+                AddedDate = item.AddedDate
+            };
+        }
+
 
     }
 }
